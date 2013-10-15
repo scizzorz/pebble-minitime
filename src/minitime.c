@@ -12,8 +12,8 @@ PBL_APP_INFO(MY_UUID,
 		APP_INFO_WATCH_FACE);
 
 Window window;
-TextLayer time_layer, date_layer;
-char time_txt[BUFSIZE], date_txt[BUFSIZE];
+TextLayer time_layer;
+char time_txt[BUFSIZE];
 
 void tick() {
 	PblTm current_time;
@@ -25,32 +25,24 @@ void tick() {
 		hour = 12;
 	}
 
-	snprintf(time_txt, BUFSIZE, "%d.%02d",
+	snprintf(time_txt, BUFSIZE, "%d.%02d / %d.%d",
 			hour,
-			current_time.tm_min);
-
-	snprintf(date_txt, BUFSIZE, "%d.%d",
+			current_time.tm_min,
 			current_time.tm_mon+1,
 			current_time.tm_mday);
 
 	text_layer_set_text(&time_layer, time_txt);
-	text_layer_set_text(&date_layer, date_txt);
 }
 
 void init(AppContextRef ctx) {
 	window_init(&window, "Minitime");
 	window_stack_push(&window, true);
 
-	text_layer_init(&time_layer, GRect(0, 60, 144, 24));
+	text_layer_init(&time_layer, GRect(0, 72, 144, 24));
 	text_layer_set_text_alignment(&time_layer, GTextAlignmentCenter);
 	text_layer_set_font(&time_layer, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
 
-	text_layer_init(&date_layer, GRect(0, 84, 144, 24));
-	text_layer_set_text_alignment(&date_layer, GTextAlignmentCenter);
-	text_layer_set_font(&date_layer, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
-
 	layer_add_child(&window.layer, &time_layer.layer);
-	layer_add_child(&window.layer, &date_layer.layer);
 
 	tick();
 }
