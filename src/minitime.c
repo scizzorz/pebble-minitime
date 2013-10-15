@@ -25,14 +25,13 @@ void tick() {
 		hour = 12;
 	}
 
-	snprintf(time_txt, BUFSIZE, "%d:%02d",
+	snprintf(time_txt, BUFSIZE, "%d.%02d",
 			hour,
 			current_time.tm_min);
 
-	snprintf(date_txt, BUFSIZE, "%d/%d/%02d",
+	snprintf(date_txt, BUFSIZE, "%d.%d",
 			current_time.tm_mon+1,
-			current_time.tm_mday,
-			current_time.tm_year%100);
+			current_time.tm_mday);
 
 	text_layer_set_text(&time_layer, time_txt);
 	text_layer_set_text(&date_layer, date_txt);
