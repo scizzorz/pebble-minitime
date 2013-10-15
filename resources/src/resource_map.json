@@ -1,11 +1,16 @@
 
-{"friendlyVersion": "VERSION",
- "versionDefName": "VERSION",
+{"friendlyVersion": "0.1",
+ "versionDefName": "APP_RESOURCES",
  "media": [
 	   {
-	    "type":"raw",
-	    "defName":"DUMMY",
-	    "file":"resource_map.json"
+	    "type":"font",
+	    "defName":"STAN_24",
+	    "file":"stan.ttf"
+	   },
+	   {
+	    "type":"font",
+	    "defName":"STAN_16",
+	    "file":"stan.ttf"
 	   }
 	  ]
 }

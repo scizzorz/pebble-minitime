@@ -35,12 +35,15 @@ void tick() {
 }
 
 void init(AppContextRef ctx) {
+	resource_init_current_app(&APP_RESOURCES);
 	window_init(&window, "Minitime");
 	window_stack_push(&window, true);
 
+	GFont font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_STAN_16));
+
 	text_layer_init(&time_layer, GRect(0, 72, 144, 24));
 	text_layer_set_text_alignment(&time_layer, GTextAlignmentCenter);
-	text_layer_set_font(&time_layer, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
+	text_layer_set_font(&time_layer, font);
 
 	layer_add_child(&window.layer, &time_layer.layer);
 
