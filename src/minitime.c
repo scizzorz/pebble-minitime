@@ -20,8 +20,13 @@ void tick() {
 
 	get_time(&current_time);
 
+	int hour = current_time.tm_hour % 12;
+	if(hour == 0) {
+		hour = 12;
+	}
+
 	snprintf(time_txt, BUFSIZE, "%d:%02d",
-			(current_time.tm_hour % 12) || 12,
+			hour,
 			current_time.tm_min);
 
 	snprintf(date_txt, BUFSIZE, "%d/%d/%02d",
