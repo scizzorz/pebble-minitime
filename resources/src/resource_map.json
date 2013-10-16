@@ -1,11 +1,10 @@
-
-{"friendlyVersion": "VERSION",
- "versionDefName": "VERSION",
- "media": [
-	   {
-	    "type":"raw",
-	    "defName":"DUMMY",
-	    "file":"resource_map.json"
-	   }
-	  ]
+{"friendlyVersion": "0.1",
+	"versionDefName": "APP_RESOURCES",
+	"media": [
+		{
+			"type":"raw",
+			"defName":"MAP",
+			"file":"resource_map.json"
+		}
+	]
 }
