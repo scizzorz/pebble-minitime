@@ -25,11 +25,11 @@ void tick() {
 		hour = 12;
 	}
 
-	snprintf(time_txt, BUFSIZE, "%d.%02d",
+	snprintf(time_txt, BUFSIZE, "%d:%02d",
 			hour,
 			current_time.tm_min);
 
-	snprintf(date_txt, BUFSIZE, "%d.%d",
+	snprintf(date_txt, BUFSIZE, "%d/%d",
 			current_time.tm_mon+1,
 			current_time.tm_mday);
 
@@ -41,13 +41,16 @@ void init(AppContextRef ctx) {
 	window_init(&window, "Minitime");
 	window_stack_push(&window, true);
 
-	text_layer_init(&time_layer, GRect(0, 60, 144, 24));
-	text_layer_set_text_alignment(&time_layer, GTextAlignmentCenter);
-	text_layer_set_font(&time_layer, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
+	GFont time_font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+	GFont date_font = fonts_get_system_font(FONT_KEY_GOTHIC_24);
 
-	text_layer_init(&date_layer, GRect(0, 84, 144, 24));
+	text_layer_init(&time_layer, GRect(0, 54, 144, 30));
+	text_layer_set_text_alignment(&time_layer, GTextAlignmentCenter);
+	text_layer_set_font(&time_layer, time_font);
+
+	text_layer_init(&date_layer, GRect(0, 84, 144, 30));
 	text_layer_set_text_alignment(&date_layer, GTextAlignmentCenter);
-	text_layer_set_font(&date_layer, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
+	text_layer_set_font(&date_layer, date_font);
 
 	layer_add_child(&window.layer, &time_layer.layer);
 	layer_add_child(&window.layer, &date_layer.layer);
